@@ -12,26 +12,50 @@
         <nav class="sidenav" id="side_nav">
           {% for item in site.data.navigation %}
             {% if item.docs == nil %}
-            <h5><a href="{{ item.url }}">{{ item.name }}</a></h5>
+              {% if item.url == page.url %}
+              <h5><a href="{{ item.url }}" aria-current="page">{{ item.name }}</a></h5>
+              {% else %}
+              <h5><a href="{{ item.url }}">{{ item.name }}</a></h5>
+              {% endif %}
             {% else %}
               <h5 class="submenu-header"><a href="{{ item.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ item.name }}</a></h5>
               <ul class="sidenav-submenu" style="display:none;">
                 {% for entry in item.docs %}
                   {% if entry.docs == nil %}
+                    {% if entry.url == page.url %}
+                    <li><a href="{{ entry.url }}" aria-current="page">{{ entry.name }}</a></li>
+                    {% else %}
                     <li><a href="{{ entry.url }}">{{ entry.name }}</a></li>
+                    {% endif %}
                   {% else %}
                     <li class="submenu-header">
+                      {% if entry.url == page.url %}
+                      <a href="{{ entry.url }}" aria-current="page"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ entry.name }}</a>
+                      {% else %}
                       <a href="{{ entry.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ entry.name }}</a>
+                      {% endif %}
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         {% for doc in entry.docs %}
                           {% if doc.docs == nil %}
+                            {% if doc.url == page.url %}
+                            <li><a href="{{ doc.url }}" aria-current="page">{{ doc.name }}</a></li>
+                            {% else %}
                             <li><a href="{{ doc.url }}">{{ doc.name }}</a></li>
+                            {% endif %}
                           {% else %}
                           <li>
+                            {% if doc.url == page.url %}
+                            <a href="{{ doc.url }}" aria-current="page"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ doc.name }}</a>
+                            {% else %}
                             <a href="{{ doc.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ doc.name }}</a>
+                            {% endif %}
                             <ul class="sidenav-subsubmenu" style="display:none;">
                               {% for subdoc in doc.docs %}
-                              <li><a href="{{ subdoc.url }}">{{ subdoc.name }}</a></li>
+                                {% if subdoc.url == page.url %}
+                                <li><a href="{{ subdoc.url }}" aria-current="page">{{ subdoc.name }}</a></li>
+                                {% else %}
+                                <li><a href="{{ subdoc.url }}">{{ subdoc.name }}</a></li>
+                                {% endif %}
                               {% endfor %}
                             </ul>
                           </li>
