@@ -1,15 +1,10 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-3 left-side-bar">
-				<select id="site_select" class="bcls-select" style="margin-left: 1rem;">
-					<option value="">Other Brightcove Docs</option>
-					{% for site in site.data.sites %}
-						{% if site.name != site.product %}
-							<option value="{{ site.url }}">{{ site.name }}</option>
-						{% endif %}
-					{% endfor %}
-				</select>
-        <nav class="sidenav" id="side_nav">
+
+        <div id="bc_veggie_burger_wrapper" style="margin-top: 1rem;margin-bottom: 0;"><img id="bc_veggie_burger" src="/assets/images/s-feather-img/menu.svg" alt="Navigation Menu" aria-expanded="false" aria-label="Menu" aria-controls="mainnav"></div>
+
+        <nav class="sidenav" id="side_nav" aria-label="Main">
           {% for item in site.data.navigation %}
             {% if item.docs == nil %}
               {% if item.url == page.url %}
@@ -19,7 +14,7 @@
               {% endif %}
             {% else %}
               <h5 class="submenu-header"><a href="{{ item.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ item.name }}</a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
+              <ul role="list" class="sidenav-submenu" style="display:none;">
                 {% for entry in item.docs %}
                   {% if entry.docs == nil %}
                     {% if entry.url == page.url %}
@@ -34,7 +29,7 @@
                       {% else %}
                       <a href="{{ entry.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ entry.name }}</a>
                       {% endif %}
-                      <ul class="sidenav-subsubmenu" style="display:none;">
+                      <ul role="list" class="sidenav-subsubmenu" style="display:none;">
                         {% for doc in entry.docs %}
                           {% if doc.docs == nil %}
                             {% if doc.url == page.url %}
@@ -49,7 +44,7 @@
                             {% else %}
                             <a href="{{ doc.url }}"><span style="color:#8E9093">+</span>&nbsp;&nbsp;{{ doc.name }}</a>
                             {% endif %}
-                            <ul class="sidenav-subsubmenu" style="display:none;">
+                            <ul role="list" class="sidenav-subsubmenu" style="display:none;">
                               {% for subdoc in doc.docs %}
                                 {% if subdoc.url == page.url %}
                                 <li><a href="{{ subdoc.url }}" aria-current="page">{{ subdoc.name }}</a></li>
