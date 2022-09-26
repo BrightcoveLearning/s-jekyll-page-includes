@@ -6,9 +6,9 @@
 
     <div class="row">
       {% if page.url contains '/index.html' %}
-        <div id="side_nav" style="margin-left: -500px; margin-right: 6em;display: inline-block;border-right: 1px solid #ccc; padding-right: 1em;">
+        <div id="side_nav" style="margin-left: -500px; margin-right: 6em;display: inline-block;border-right: 1px solid #e5e5e6; padding-right: 1em;">
       {% else %}
-        <div id="side_nav" style="margin-left: 1em;display: inline-block;border-right: 1px solid #ccc;padding-right: 1em;">
+        <div id="side_nav" style="margin-left: 1em;display: inline-block;border-right: 1px solid #e5e5e6;padding-right: 1em;">
       {% endif %}
         <nav class="sidenav" aria-label="Main">
           {% for item in site.data.navigation %}
